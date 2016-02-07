@@ -42,7 +42,7 @@ spl_autoload_register(function( $class_name ) {
     }
 
     $path = str_replace('\\', DIRECTORY_SEPARATOR, $class_name) . '.php';
-    $root = plugin_dir_path(__FILE__) . 'src' . DIRECTORY_SEPARATOR;
+    $root = plugin_dir_path(__FILE__) . 'lib' . DIRECTORY_SEPARATOR;
     $file = $root . $path;
 
     if (file_exists($file)) {
