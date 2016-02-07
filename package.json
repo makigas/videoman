@@ -1,0 +1,31 @@
+{
+  "name": "makigas-videomanager",
+  "version": "1.1.0",
+  "description": "This is the source code for the video manager plugin.",
+  "main": "src/index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/makigas/videoman.git"
+  },
+  "keywords": [
+    "wordpress",
+    "makigas",
+    "videoman"
+  ],
+  "author": "Dani Rodríguez",
+  "homepage": "http://www.makigas.es",
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.7.0",
+    "grunt-contrib-compress": "^0.14.0",
+    "grunt-contrib-copy": "^0.8.2",
+    "grunt-contrib-cssmin": "^0.14.0",
+    "grunt-contrib-imagemin": "^1.0.0",
+    "grunt-contrib-uglify": "^0.11.1",
+    "grunt-rsync": "^1.0.1",
+    "load-grunt-tasks": "^3.4.0"
+  }
+}
