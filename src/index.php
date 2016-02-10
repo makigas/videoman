@@ -23,7 +23,7 @@
  * @version 1.1.0
  */
 /*
- * Plugin Name: makigas videoman
+ * Plugin Name: makigas-videoman
  * Plugin URI:  http://www.makigas.es
  * Description: Video management library for WordPress.
  * Version:     1.1.0
@@ -32,7 +32,7 @@
  * License:     GPL3
  * License URI: https://www.gnu.org/licenses/gpl.html
  * Domain Path: /languages
- * Text Domain: makigas
+ * Text Domain: makigas-videoman
  */
 
 spl_autoload_register(function( $class_name ) {

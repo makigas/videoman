@@ -30,14 +30,14 @@ class Video {
     public function register_post_type() {
         // Labels array.
         $labels = array(
-            'name' => __('Videos'),
-            'singular_name' => __('Video')
+            'name' => __( 'Videos', 'makigas-videoman' ),
+            'singular_name' => __( 'Video', 'makigas-videoman' )
         );
 
         // Arguments array.
         $args = array(
             'labels' => $labels,
-            'description' => 'YouTube Video and information.',
+            'description' => __( 'YouTube video including metadata' ),
             'supports' => array('title', 'editor', 'excerpt'),
             'rewrite' => array('slug' => 'series/%playlist%'),
             'public' => true,

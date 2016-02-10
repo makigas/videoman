@@ -32,22 +32,22 @@ class Playlist {
     public function register_playlist() {
         // Labels array. This should be internationalizated.
         $labels = array(
-            'name' => _x('Playlists', 'taxonomy general name'),
-            'singular_name' => _x('Playlist', 'taxonomy singular name'),
-            'search_items' => __('Search Playlists'),
-            'all_items' => __('All Playlists'),
-            'parent_item' => __('Parent Playlist'),
-            'parent_item_colon' => __('Parent Playlist:'),
-            'edit_item' => __('Edit Playlist'),
-            'update_item' => __('Update Playlist'),
-            'add_new_item' => __('Add new Playlist'),
-            'new_item_name' => __('Playlist Title'),
-            'menu_name' => __('Playlist'),
+            'name' => __( 'Playlists', 'makigas-videoman' ),
+            'singular_name' => __( 'Playlist', 'makigas-videoman' ),
+            'search_items' => __( 'Search Playlists', 'makigas-videoman' ),
+            'all_items' => __('All Playlists', 'makigas-videoman' ),
+            'parent_item' => __( 'Parent Playlist', 'makigas-videoman' ),
+            'parent_item_colon' => __( 'Parent Playlist:', 'makigas-videoman' ),
+            'edit_item' => __( 'Edit Playlist', 'makigas-videoman' ),
+            'update_item' => __( 'Update Playlist', 'makigas-videoman' ),
+            'add_new_item' => __( 'Add new Playlist', 'makigas-videoman' ),
+            'new_item_name' => __( 'Playlist Title', 'makigas-videoman' ),
+            'menu_name' => __( 'Playlist', 'makigas-videoman' ),
         );
 
         // Playlist arguments.
         $args = array(
-            'label' => 'Playlist',
+            'label' => __( 'Playlist', 'makigas-videoman' ),
             'labels' => $labels,
             'query_var' => true,
             // We WANT the playlists to be a hierarchical type.

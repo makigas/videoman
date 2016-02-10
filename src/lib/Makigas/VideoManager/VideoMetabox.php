@@ -43,7 +43,7 @@ class VideoMetabox {
     }
 
     public function register_metabox() {
-        add_meta_box('metadata', 'Video information', array($this, 'print_metadata_box'));
+        add_meta_box('metadata', __( 'Video information', 'makigas-videoman' ), array($this, 'print_metadata_box'));
     }
 
     public function print_metadata_box($post) {
@@ -54,9 +54,9 @@ class VideoMetabox {
         wp_nonce_field('makigas_metabox_video', 'makigas_metabox_nonce');
 
         // Put the fields.
-        $this->print_field($post, '_video_id', 'Video ID');
-        $this->print_field($post, '_episode', 'Episode Code');
-        $this->print_field($post, '_length', 'Length');
+        $this->print_field( $post, '_video_id', __( 'Video ID', 'makigas-videoman' ) );
+        $this->print_field( $post, '_episode', __( 'Episode Number', 'makigas-videoman' ) );
+        $this->print_field( $post, '_length', __( 'Length', 'makigas-videoman' ) );
     }
 
     public function save_post($post_id) {
