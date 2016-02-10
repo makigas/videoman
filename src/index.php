@@ -56,6 +56,9 @@ spl_autoload_register(function( $class_name ) {
 $makigas_videomanager = new Makigas\VideoManager\Manager;
 $makigas_videomanager->init();
 
+// Register settings page.
+new Makigas\VideoManager\SettingsPage;
+
 // Register widget.
 add_action('widgets_init', function() {
     // Register widgets.
