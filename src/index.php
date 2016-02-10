@@ -55,3 +55,9 @@ spl_autoload_register(function( $class_name ) {
 // Init video manager plugin.
 $makigas_videomanager = new Makigas\VideoManager\Manager;
 $makigas_videomanager->init();
+
+// Register widget.
+add_action('widgets_init', function() {
+    // Register widgets.
+    register_widget('Makigas\VideoManager\RecentVideosWidget');
+});
