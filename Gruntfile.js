@@ -41,6 +41,11 @@ module.exports = function (grunt) {
           cwd: '<%= config.src %>',
           dest: '<%= config.dist %>',
           src: '**/*.{html,php}'
+        },
+        {
+          expand: true,
+          dest: '<%= config.dist %>',
+          src: 'languages/*'
         }]
       }
     },
@@ -53,6 +58,38 @@ module.exports = function (grunt) {
           recursive: true,
           delete: true
         }
+      }
+    },
+    pot: {
+      options: {
+        text_domain: 'makigas-videoman',
+        dest: 'languages/',
+        keywords: [
+          '__:1',
+          '_e:1',
+          '_x:1,2c',
+          'esc_html__:1',
+          'esc_html_e:1',
+          'esc_html_x:1,2c',
+          'esc_attr__:1', 
+          'esc_attr_e:1', 
+          'esc_attr_x:1,2c', 
+          '_ex:1,2c',
+          '_n:1,2', 
+          '_nx:1,2,4c',
+          '_n_noop:1,2',
+          '_nx_noop:1,2,3c'
+        ]
+      },
+      files: {
+        src: [ 'src/**/*.php' ],
+        expand: true
+      }
+    },
+    po2mo: {
+      files: {
+        src: 'languages/*.po',
+        expand: true
       }
     },
     uglify: {

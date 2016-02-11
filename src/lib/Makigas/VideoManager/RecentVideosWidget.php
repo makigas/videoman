@@ -62,7 +62,7 @@ class RecentVideosWidget extends \WP_Widget {
         $instance = wp_parse_args((array) $inst, array(
             'title' => __( 'Recent Videos', 'makigas-videoman' ),
             'button_text' => __( 'See recent episodes', 'makigas-videoman' ),
-            'button_href' => __( '#', 'makigas-videoman' )
+            'button_href' => '#'
         ));
         ?>
 <p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>

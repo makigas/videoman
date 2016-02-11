@@ -59,6 +59,11 @@ $makigas_videomanager->init();
 // Register settings page.
 new Makigas\VideoManager\SettingsPage;
 
+// Load translations.
+add_action( 'plugins_loaded', function() {
+	load_plugin_textdomain( 'makigas-videoman', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+});
+
 // Register widget.
 add_action('widgets_init', function() {
     // Register widgets.
