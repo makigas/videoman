@@ -64,6 +64,15 @@ add_action( 'plugins_loaded', function() {
 	load_plugin_textdomain( 'makigas-videoman', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 });
 
+// Load templates.
+add_filter( 'single_template', function( $single_template ) {
+	global $post;
+	if ( $post->post_type == 'video' ) {
+		$single_template = dirname( __FILE__ ) . '/templates/single-video.php';
+	}
+	return $single_template;
+});
+
 // Register widget.
 add_action('widgets_init', function() {
     // Register widgets.
