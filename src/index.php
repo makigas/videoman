@@ -66,11 +66,16 @@ add_action( 'plugins_loaded', function() {
 
 // Load templates.
 add_filter( 'single_template', function( $single_template ) {
-	global $post;
-	if ( $post->post_type == 'video' ) {
+	if ( get_post_type() == 'video' ) {
 		$single_template = dirname( __FILE__ ) . '/templates/single-video.php';
 	}
 	return $single_template;
+});
+add_filter( 'archive_template', function( $archive_template ) {
+	if ( is_post_type_archive( 'video' ) ) {
+		$archive_template = dirname( __FILE__ ) . '/templates/archive-video.php';
+	}
+	return $archive_template;
 });
 
 // Register widget.
