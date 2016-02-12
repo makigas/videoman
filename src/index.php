@@ -77,6 +77,12 @@ add_filter( 'archive_template', function( $archive_template ) {
 	}
 	return $archive_template;
 });
+add_filter( 'taxonomy_template', function( $taxonomy_template ) {
+	if ( is_tax( 'playlist' ) ) {
+		$taxonomy_template = dirname( __FILE__ ) . '/templates/taxonomy-playlist.php';
+	}
+	return $taxonomy_template;
+});
 
 // Register widget.
 add_action('widgets_init', function() {
