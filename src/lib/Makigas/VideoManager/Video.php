@@ -39,7 +39,7 @@ class Video {
             'labels' => $labels,
             'description' => __( 'YouTube video including metadata' ),
             'supports' => array('title', 'editor', 'excerpt'),
-            'rewrite' => array('slug' => 'series/%playlist%'),
+            'rewrite' => array('slug' => get_option( 'makigas-videoman-videos-slug' ) . '/%playlist%'),
             'public' => true,
             'query_var' => true,
             'has_archive' => true,
@@ -71,19 +71,13 @@ class Video {
 
     public function makigas_add_rewrite_rules() {
         // Rewrite rule for the pagination system.
-        add_rewrite_rule('^series/([^/]+)/page/([0-9]+)/?$', 'index.php?playlist=$matches[1]&paged=$matches[2]', 'top');
+        add_rewrite_rule('^' . get_option( 'makigas-videoman-videos-slug' ) . '/([^/]+)/page/([0-9]+)/?$', 'index.php?playlist=$matches[1]&paged=$matches[2]', 'top');
 
-        // Rewrite rule for the video page.
-        add_rewrite_rule('^series/([^/]+)/([^/]+)/?$', 'index.php?video=$matches[2]', 'top');
-
-        // Rewrite rule for the page 1 of a playlist.
-        add_rewrite_rule('^series/([^/]+)/?$', 'index.php?playlist=$matches[1]', 'top');
+		// Rewrite rule for the videos.
+        add_rewrite_rule('^' . get_option( 'makigas-videoman-videos-slug' ) . '/page/([0-9]+)/?$', 'index.php?post_type=video&paged=$matches[1]', 'top');
 
         // Rewrite rule for the videos.
-        add_rewrite_rule('^videos/page/([0-9]+)/?$', 'index.php?post_type=video&paged=$matches[1]', 'top');
-
-        // Rewrite rule for the videos.
-        add_rewrite_rule('^videos/?$', 'index.php?post_type=video', 'top');
+        add_rewrite_rule('^' . get_option( 'makigas-videoman-videos-slug' ) . '/?$', 'index.php?post_type=video', 'top');
     }
 
 }

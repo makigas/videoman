@@ -61,15 +61,7 @@ class SettingsPage {
 				array( $this, 'render_slug_settings_callback' ),
 				self::SETTINGS_PAGE
 			);
-		
-		add_settings_field(
-				'makigas-videoman-playlist-slug',
-				__( 'Playlist URL Slug', 'makigas-videoman' ),
-				array( $this, 'render_playlist_slug_callback' ),
-				self::SETTINGS_PAGE,
-				self::SETTINGS_SLUG_SECTION
-			);
-		
+
 		add_settings_field(
 				'makigas-videoman-videos-slug',
 				__( 'Videos archive URL Slug', 'makigas-videoman' ),
@@ -78,7 +70,6 @@ class SettingsPage {
 				self::SETTINGS_SLUG_SECTION
 			);
 		
-		register_setting( self::SETTINGS_PAGE, 'makigas-videoman-playlist-slug' );
 		register_setting( self::SETTINGS_PAGE, 'makigas-videoman-videos-slug' );
 	}
 	
@@ -87,22 +78,12 @@ class SettingsPage {
 	}
 	
 	/**
-	 * This is the callback that will display the playlist slug control.
-	 * This allows the user to modify the slug used in the page for
-	 * rendering a playlist and each video in that playlist.
-	 */
-	public function render_playlist_slug_callback() {
-		echo '<input type="text" id="makigas-videoman-playlist-slug" name="makigas-videoman-playlist-slug" value="' . get_option( 'makigas-videoman-playlist-slug', 'videos' ) . '" />';
-		echo '<p id="makigas-videoman-playlist-slug-description" class="description">' . __( 'This is the base URL when the user is inspecting a playlist or a single video.', 'makigas-videoman' ) . '</p>';
-	}
-	
-	/**
 	 * This is the callback that will display the video slug control.
 	 * This allows the user to modify the slug used in page for rendering
 	 * the video archive.
 	 */
 	public function render_video_slug_callback() {
-		echo '<input type="text" id="makigas-videoman-videos-slug" name="makigas-videoman-videos-slug" value="' . get_option( 'makigas-videoman-videos-slug', 'all-videos' ) . '" />';
+		echo '<input type="text" id="makigas-videoman-videos-slug" name="makigas-videoman-videos-slug" value="' . get_option( 'makigas-videoman-videos-slug', 'video' ) . '" />';
 		echo '<p id="makigas-videoman-videos-slug-description" class="description">' . __( 'This is the base URL when the user is inspecting the video archive page.', 'makigas-videoman' ) . '</p>';
 	}
     

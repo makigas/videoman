@@ -55,7 +55,7 @@ class Playlist {
             // of supporting child playlists, or just because I don't want
             // to use tags for this.
             'hierarchical' => true,
-            'rewrite' => array('slug' => 'series')
+            'rewrite' => array( 'slug' => get_option( 'makigas-videoman-videos-slug' ) )
         );
 
         register_taxonomy('playlist', 'video', $args);
