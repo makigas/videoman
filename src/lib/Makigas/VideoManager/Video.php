@@ -80,6 +80,7 @@ class Video {
 				'slug' => $root . '/%playlist%/' . $prefix,
 				'with_front' => false
 			),
+			'menu_icon' => 'dashicons-video-alt3',
             'public' => true,
             'query_var' => true,
             'has_archive' => true,
