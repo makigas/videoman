@@ -75,7 +75,7 @@ class VideoMetabox {
     }
 
     public function register_metabox() {
-        add_meta_box('metadata', __( 'Video information', 'makigas-videoman' ), array($this, 'print_metadata_box'));
+        add_meta_box( 'metadata', __( 'Video information', 'makigas-videoman' ), array($this, 'print_metadata_box'), 'video' );
     }
 
     public function print_metadata_box($post) {
