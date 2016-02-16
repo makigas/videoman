@@ -35,6 +35,8 @@
  * Text Domain: makigas-videoman
  */
 
+defined( 'ABSPATH' ) || die( 'You are not supposed to run this, punk.' );
+
 spl_autoload_register(function( $class_name ) {
     // Filter classes coming only from Makigas\VideoManager namespace.
     if (false === stripos($class_name, 'Makigas\VideoManager')) {
@@ -52,9 +54,12 @@ spl_autoload_register(function( $class_name ) {
     }
 });
 
-// Init video manager plugin.
-$makigas_videomanager = new Makigas\VideoManager\Manager;
-$makigas_videomanager->init();
+/* Set up hooks. */
+Makigas\VideoManager\Video::get_instance()->setup_hooks();
+Makigas\VideoManager\Playlist::get_instance()->setup_hooks();
+Makigas\VideoManager\VideoMetabox::get_instance()->setup_hooks();
+Makigas\VideoManager\UrlRewriter::get_instance()->setup_hooks();
+Makigas\VideoManager\SettingsPage::get_instance()->setup_hooks();
 
 // Load translations.
 add_action( 'plugins_loaded', function() {
@@ -83,6 +88,5 @@ add_filter( 'taxonomy_template', function( $taxonomy_template ) {
 
 // Register widget.
 add_action('widgets_init', function() {
-    // Register widgets.
     register_widget('Makigas\VideoManager\RecentVideosWidget');
 });
