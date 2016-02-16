@@ -20,38 +20,70 @@
 
 namespace Makigas\VideoManager;
 
+defined( 'ABSPATH' ) || die( 'You are not supposed to run this, punk.' );
+
+/**
+ * This is the custom post type that we use to store information about videos.
+ * The user can store information about videos coming from an external souce
+ * like YouTube.
+ * 
+ * @package makigas
+ * @version 1.1.0
+ * @todo the custom post type ID doesn't make use of any prefix.
+ * @todo support for other video providers: Vimeo, Livecoding...?
+ */
 class Video {
 
+	/**
+	 * Our singleton variable.
+	 * @var Video
+	 */
+	private static $instance = null;
+	
+	/**
+	 * Get the static instance for this class.
+	 * @return Video
+	 */
+	public static function get_instance() {
+		if ( static::$instance == null ) {
+			static::$instance = new Video();
+		}
+		return static::$instance;
+	}
+	
+	protected function __construct() {
+		
+	}
+	
+	public function setup_hooks() {
+		add_action( 'init', array( $this, 'register_post_type' ) );
+	}
+	
     /**
-     * Register the post type that defines a video. This uses WordPress custom post types.
-     * This method should generate the post type but not any associated taxonomies such
-     * as playlists.
+     * This hook registers the custom post type for video. It has to be
+	 * executed, otherwise the system won't recognize our videos.
      */
     public function register_post_type() {
-        // Labels array.
-        $labels = array(
-            'name' => __( 'Videos', 'makigas-videoman' ),
-            'singular_name' => __( 'Video', 'makigas-videoman' )
-        );
+		/* These settings are part of slug and can be changed by the user. */
+		$root = get_option( 'makigas-videoman-videos-slug', 'videos' );
+		$prefix = get_option( 'makigas-videoman-videos-prefix', 'episode' );
 
-        // Arguments array.
-        $args = array(
-            'labels' => $labels,
+        /* Actually register the video post type in the system. */
+        register_post_type( 'video', array(
+            'labels' => array(
+				'name' => __( 'Videos', 'makigas-videoman' ),
+				'singular_name' => __( 'Video', 'makigas-videoman' )
+			),
             'description' => __( 'YouTube video including metadata' ),
-            'supports' => array('title', 'editor', 'excerpt'),
-            'rewrite' => array('slug' => get_option( 'makigas-videoman-videos-slug' ) . '/%playlist%'),
+            'supports' => array( 'title', 'editor', 'excerpt' ),
+            'rewrite' => array(
+				'slug' => $root . '/%playlist%/' . $prefix,
+				'with_front' => false
+			),
             'public' => true,
             'query_var' => true,
             'has_archive' => true,
-            'taxonomies' => array('playlist')
-        );
-
-        // Add video post type.
-        register_post_type('video', $args);
+            'taxonomies' => array( 'playlist' )
+        ) );
     }
-
-    
-
-    
-
 }
