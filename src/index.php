@@ -60,6 +60,7 @@ Makigas\VideoManager\Playlist::get_instance()->setup_hooks();
 Makigas\VideoManager\VideoMetabox::get_instance()->setup_hooks();
 Makigas\VideoManager\UrlRewriter::get_instance()->setup_hooks();
 Makigas\VideoManager\SettingsPage::get_instance()->setup_hooks();
+Makigas\VideoManager\Dashboard\GlanceVideo::get_instance()->setup_hooks();
 
 // Load translations.
 add_action( 'plugins_loaded', function() {

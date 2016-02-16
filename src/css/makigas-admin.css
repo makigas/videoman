@@ -1,0 +1,4 @@
+/* Display the correct dashicon before Video count in "At a Glance". */
+.video-count a:before {
+    content: "\f236" !important;
+}

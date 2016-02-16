@@ -49,6 +49,13 @@ module.exports = function (grunt) {
         }]
       }
     },
+    cssmin: {
+      dist: {
+        files: {
+          '<%= config.dist %>/css/makigas-admin.css': ['<%= config.src %>/css/makigas-admin.css']
+        }
+      }
+    },
     rsync: {
       staging: {
         options: {
@@ -104,6 +111,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'uglify:dist',
+    'cssmin:dist',
     'copy:dist'
   ]);
   
