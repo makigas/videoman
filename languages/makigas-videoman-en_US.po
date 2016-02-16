@@ -7,56 +7,56 @@ msgid ""
 msgstr ""
 "Project-Id-Version: makigas-videomanager 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-11 20:23+0100\n"
-"PO-Revision-Date: 2016-02-11 20:24+0100\n"
+"POT-Creation-Date: 2016-02-16 23:45+0100\n"
+"PO-Revision-Date: 2016-02-16 23:45+0100\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7\n"
-"Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: en\n"
 
-#: src/lib/Makigas/VideoManager/Playlist.php:35
-msgid "Playlists"
-msgstr "Playlists"
-
-#: src/lib/Makigas/VideoManager/Playlist.php:36
-#: src/lib/Makigas/VideoManager/Playlist.php:45
-#: src/lib/Makigas/VideoManager/Playlist.php:50
+#: src/lib/Makigas/VideoManager/Playlist.php:71
+#: src/lib/Makigas/VideoManager/Playlist.php:74
+#: src/lib/Makigas/VideoManager/Playlist.php:83
 msgid "Playlist"
 msgstr "Playlist"
 
-#: src/lib/Makigas/VideoManager/Playlist.php:37
+#: src/lib/Makigas/VideoManager/Playlist.php:73
+msgid "Playlists"
+msgstr "Playlists"
+
+#: src/lib/Makigas/VideoManager/Playlist.php:75
 msgid "Search Playlists"
 msgstr "Search Playlists"
 
-#: src/lib/Makigas/VideoManager/Playlist.php:38
+#: src/lib/Makigas/VideoManager/Playlist.php:76
 msgid "All Playlists"
 msgstr "All Playlists"
 
-#: src/lib/Makigas/VideoManager/Playlist.php:39
+#: src/lib/Makigas/VideoManager/Playlist.php:77
 msgid "Parent Playlist"
 msgstr "Parent Playlist"
 
-#: src/lib/Makigas/VideoManager/Playlist.php:40
+#: src/lib/Makigas/VideoManager/Playlist.php:78
 msgid "Parent Playlist:"
 msgstr "Parent Playlist:"
 
-#: src/lib/Makigas/VideoManager/Playlist.php:41
+#: src/lib/Makigas/VideoManager/Playlist.php:79
 msgid "Edit Playlist"
 msgstr "Edit Playlist"
 
-#: src/lib/Makigas/VideoManager/Playlist.php:42
+#: src/lib/Makigas/VideoManager/Playlist.php:80
 msgid "Update Playlist"
 msgstr "Update Playlist"
 
-#: src/lib/Makigas/VideoManager/Playlist.php:43
+#: src/lib/Makigas/VideoManager/Playlist.php:81
 msgid "Add new Playlist"
 msgstr "Add new Playlist"
 
-#: src/lib/Makigas/VideoManager/Playlist.php:44
+#: src/lib/Makigas/VideoManager/Playlist.php:82
 msgid "Playlist Title"
 msgstr "Playlist Title"
 
@@ -85,69 +85,117 @@ msgstr "Button Text:"
 msgid "Button Link:"
 msgstr "Button Link:"
 
-#: src/lib/Makigas/VideoManager/SettingsPage.php:26
-#: src/lib/Makigas/VideoManager/SettingsPage.php:41
+#: src/lib/Makigas/VideoManager/SettingsPage.php:69
+#: src/lib/Makigas/VideoManager/SettingsPage.php:84
 msgid "Video Manager Options"
 msgstr "Video Manager Options"
 
-#: src/lib/Makigas/VideoManager/SettingsPage.php:27
+#: src/lib/Makigas/VideoManager/SettingsPage.php:70
 msgid "Video Manager"
 msgstr "Video Manager"
 
-#: src/lib/Makigas/VideoManager/SettingsPage.php:60
+#: src/lib/Makigas/VideoManager/SettingsPage.php:103
 msgid "Slug Settings"
 msgstr "Slug Settings"
 
-#: src/lib/Makigas/VideoManager/SettingsPage.php:67
-msgid "Playlist URL Slug"
-msgstr "Playlist URL Slug"
-
-#: src/lib/Makigas/VideoManager/SettingsPage.php:75
+#: src/lib/Makigas/VideoManager/SettingsPage.php:110
 msgid "Videos archive URL Slug"
 msgstr "Videos archive URL Slug"
 
-#: src/lib/Makigas/VideoManager/SettingsPage.php:86
+#: src/lib/Makigas/VideoManager/SettingsPage.php:118
+msgid "Video page URL subdirectory"
+msgstr "Video page URL subdirectory"
+
+#: src/lib/Makigas/VideoManager/SettingsPage.php:129
 msgid "These settings control the slug engine."
 msgstr "These settings control the slug engine."
 
-#: src/lib/Makigas/VideoManager/SettingsPage.php:96
-msgid ""
-"This is the base URL when the user is inspecting a playlist or a single "
-"video."
-msgstr ""
-"This is the base URL when the user is inspecting a playlist or a single "
-"video."
+#: src/lib/Makigas/VideoManager/SettingsPage.php:139
+msgid "This is the base URL when the user is inspecting the video archive page."
+msgstr "This is the base URL when the user is inspecting the video archive page."
 
-#: src/lib/Makigas/VideoManager/SettingsPage.php:106
-msgid ""
-"This is the base URL when the user is inspecting the video archive page."
-msgstr ""
-"This is the base URL when the user is inspecting the video archive page."
+#: src/lib/Makigas/VideoManager/SettingsPage.php:144
+msgid "This goes between the playlist name and the video name in the permalink."
+msgstr "This goes between the playlist name and the video name in the permalink."
 
-#: src/lib/Makigas/VideoManager/Video.php:33
+#: src/lib/Makigas/VideoManager/Video.php:74
 msgid "Videos"
 msgstr "Videos"
 
-#: src/lib/Makigas/VideoManager/Video.php:34
+#: src/lib/Makigas/VideoManager/Video.php:75
 msgid "Video"
 msgstr "Video"
 
-#: src/lib/Makigas/VideoManager/Video.php:40
+#: src/lib/Makigas/VideoManager/Video.php:77
 msgid "YouTube video including metadata"
 msgstr "YouTube video including metadata"
 
-#: src/lib/Makigas/VideoManager/VideoMetabox.php:46
+#: src/lib/Makigas/VideoManager/VideoMetabox.php:78
 msgid "Video information"
 msgstr "Video information"
 
-#: src/lib/Makigas/VideoManager/VideoMetabox.php:57
+#: src/lib/Makigas/VideoManager/VideoMetabox.php:89
 msgid "Video ID"
 msgstr "Video ID"
 
-#: src/lib/Makigas/VideoManager/VideoMetabox.php:58
+#: src/lib/Makigas/VideoManager/VideoMetabox.php:90
 msgid "Episode Number"
 msgstr "Episode Number"
 
-#: src/lib/Makigas/VideoManager/VideoMetabox.php:59
+#: src/lib/Makigas/VideoManager/VideoMetabox.php:91
 msgid "Length"
 msgstr "Length"
+
+#: src/templates/archive-video.php:42 src/templates/archive-video.php:80
+#: src/templates/taxonomy-playlist.php:45
+#: src/templates/taxonomy-playlist.php:76
+msgid "Previous page"
+msgstr "Previous page"
+
+#: src/templates/archive-video.php:43 src/templates/archive-video.php:81
+#: src/templates/taxonomy-playlist.php:46
+#: src/templates/taxonomy-playlist.php:77
+msgid "Next page"
+msgstr "Next page"
+
+#: src/templates/archive-video.php:86
+msgid "No videos have been found here."
+msgstr "No videos have been found here."
+
+#: src/templates/functions.php:51
+msgid "You are at the first episode"
+msgstr "You are at the first episode"
+
+#: src/templates/functions.php:67
+msgid "You are at the last episode"
+msgstr "You are at the last episode"
+
+#: src/templates/single-video.php:40
+msgid "An episode from:"
+msgstr "An episode from:"
+
+#: src/templates/single-video.php:54
+msgid "Previous episode: "
+msgstr "Previous episode: "
+
+#: src/templates/single-video.php:55
+msgid "Next episode: "
+msgstr "Next episode: "
+
+#: src/templates/single-video.php:67
+msgid "Watch on YouTube"
+msgstr "Watch on YouTube"
+
+#: src/templates/single-video.php:72
+msgid "Video Description:"
+msgstr "Video Description:"
+
+#: src/templates/taxonomy-playlist.php:81
+msgid "Sorry, there are no videos here."
+msgstr "Sorry, there are no videos here."
+
+#~ msgid "Playlist URL Slug"
+#~ msgstr "Playlist URL Slug"
+
+#~ msgid "This is the base URL when the user is inspecting a playlist or a single video."
+#~ msgstr "This is the base URL when the user is inspecting a playlist or a single video."
