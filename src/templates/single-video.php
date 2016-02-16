@@ -1,20 +1,36 @@
 <?php
 
-/* 
- * This file is part of the makigas theme by danirod
- * Copyright (C) 2015 Dani Rodríguez <danirod@outlook.com>
+/*
+ * This file is part of the Makigas CoreWidgets library for WordPress.
+ * Copyright (C) 2016 Dani Rodríguez <danirod@outlook.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// FPD check
-if (!defined('ABSPATH')) {
-    header('HTTP/1.1 403 Forbidden');
-    // TO-DO: Show a more appealing error message.
-    die('You are not supposed to directly view this file, buddy.');
-}
+/**
+ * This template is used when a single video is requested. It displays the
+ * video player in a big layout including information about a single video.
+ * 
+ * @package makigas-videoman
+ * @version 1.1.0
+ */
+defined( 'ABSPATH' ) || die( 'You are not supposed to run this, punk.' );
 
+require_once 'functions.php';
+
+get_header();
 ?>
-
-<?php get_header(); ?>
 
 <div class="body-container container">
   <?php the_post(); ?>

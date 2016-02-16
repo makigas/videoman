@@ -1,19 +1,34 @@
 <?php
+
 /*
- * This file is part of the makigas v4 theme by danirod
- * Copyright (C) 2015 Dani Rodríguez <danirod@outlook.com>
- * All rights reserved.
+ * This file is part of the Makigas CoreWidgets library for WordPress.
+ * Copyright (C) 2016 Dani Rodríguez <danirod@outlook.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
  * Archive video. This page will list all the videos available in the system
  * in reverse chronollogical order. The most recent videos will be displayed
  * on the first pages and it will be possible to navigate to older pages.
+ * 
+ * @package makigas-videoman
+ * @version 1.1.0
  */
-if (!defined('ABSPATH')) {
-	header('HTTP/1.1 403 Forbidden');
-	die('You are not supposed to directly view this file, buddy.');
-}
+defined( 'ABSPATH' ) || die( 'You are not supposed to run this, punk.' );
+
+require_once 'functions.php';
 
 get_header();
 ?>
