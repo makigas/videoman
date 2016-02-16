@@ -1,6 +1,6 @@
 {
   "name": "makigas-videomanager",
-  "version": "1.1.0",
+  "version": "1.1.0-beta2",
   "description": "This is the source code for the video manager plugin.",
   "main": "src/index.php",
   "scripts": {

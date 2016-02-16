@@ -26,7 +26,7 @@
  * Plugin Name: makigas-videoman
  * Plugin URI:  http://www.makigas.es
  * Description: Video management library for WordPress.
- * Version:     1.1.0
+ * Version:     1.1.0-beta2
  * Author:      Dani Rodríguez
  * Author URI:  http://www.danirod.es
  * License:     GPL3
