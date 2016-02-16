@@ -119,7 +119,7 @@ class VideoMetabox {
     }
 
     public function enqueue_assets() {
-        wp_register_script('makigas-video-plugin-meta-box', plugins_url('video-plugin/js/metabox.min.js'));
+        wp_register_script('makigas-video-plugin-meta-box', plugins_url('videoman/js/metabox.min.js'));
         wp_enqueue_script('makigas-video-plugin-meta-box');
     }
 
