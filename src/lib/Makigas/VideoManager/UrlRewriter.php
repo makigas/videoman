@@ -55,6 +55,28 @@ class UrlRewriter {
 	}
 	
 	/**
+	 * This function will generate a slug for the playlist whose ID is given.
+	 * It works recursivelly checking whether this playlist is child of any
+	 * other category.
+	 * 
+	 * @param int $playlist_id playlist ID
+	 */
+	private function extract_playlists( $playlist_id ) {
+		/* Just in case there is no playlist. */
+		if ( $playlist_id == 0 ) {
+			return 'unlisted';
+		}
+		
+		$url = '';
+		while ( $playlist_id > 0 ) {
+			$playlist = get_term_by( 'id', $playlist_id, 'playlist' );
+			$url = $playlist->slug . '/' . $url;
+			$playlist_id = $playlist->parent; /* 0 if no parent. */
+		}
+		return substr( $url, 0, -1 ); /* Remove trailing slash. */
+	}
+	
+	/**
 	 * This is the filter that gets the appropiate permalink for a post.
 	 * Usually this permalink will include the atom %playlist% at any point
 	 * since this filter is intended to be used only with video type.
@@ -65,19 +87,25 @@ class UrlRewriter {
 	 */
 	public function filter_permalink($url, $post) {
         // If this post is not a video, don't filter.
-        if ('video' !== get_post_type($post)) {
+        if ( 'video' !== get_post_type($post) ) {
             return $url;
         }
-
-        // FIXME: There should be a way to manage permalinks for videos
-        // that are not in a playlist.
-        // Get the video playlist.
-        $playlists = get_the_terms($post, 'playlist');
-
-        // The video is in at least one playlist. Use the first playlist.
-        // A video should not be anyway in more than a playlist.
-        $playlist_slug = $playlists[0]->slug;
-        return str_replace('%playlist%', $playlist_slug, $url);
+		
+		/* In which playlist this video is in. */
+		$playlists = get_the_terms( $post, 'playlist' );
+		
+		/*
+		 * Check if the video is in a playlist. If it's not, put a dummy
+		 * value, like 'unlisted'. This is also used when the user is editing
+		 * an unsaved video: the interface will suggest a permalink based on
+		 * this function, and the post is not part of a taxonomy yet.
+		 */
+		if ( $playlists == false ) {
+			return str_replace( '%playlist%', 'unlisted', $url );
+		} else {
+			$playlist_url = $this->extract_playlists( $playlists[0]->term_id );
+			return str_replace( '%playlist%', $playlist_url, $url );
+		}
     }
 	
 	/**
@@ -87,14 +115,20 @@ class UrlRewriter {
 	 * rules to work.
 	 */
 	public function setup_rewrite_rules() {
-        // Rewrite rule for the pagination system.
-        add_rewrite_rule('^' . get_option( 'makigas-videoman-videos-slug' ) . '/([^/]+)/page/([0-9]+)/?$', 'index.php?playlist=$matches[1]&paged=$matches[2]', 'top');
-
-		// Rewrite rule for the videos.
-        add_rewrite_rule('^' . get_option( 'makigas-videoman-videos-slug' ) . '/page/([0-9]+)/?$', 'index.php?post_type=video&paged=$matches[1]', 'top');
-
-        // Rewrite rule for the videos.
-        add_rewrite_rule('^' . get_option( 'makigas-videoman-videos-slug' ) . '/?$', 'index.php?post_type=video', 'top');
+		/* Extract modifiable information. */
+		$root = get_option( 'makigas-videoman-videos-slug', 'videos' );
+		$prefix = get_option( 'makigas-videoman-videos-prefix', 'episode' );
+		
+		/* These rewrite rules makes it possible to browse the video archive. */
+		add_rewrite_rule( "^${root}/?$", 'index.php?post_type=video', 'top' );
+		add_rewrite_rule( "^${root}/page/([0-9]+)/?$", 'index.php?post_type=video&paged=$matches[1]', 'top' );
+		
+		/* This rewrite rule makes it possible to access single video. */
+		add_rewrite_rule( "^${root}/([^/]+/)+${prefix}/([^/]+)/?$", 'index.php?video=$matches[2]', 'top' );
+		
+		/* These rewrite rules makes it possible to browse a playlist. */
+		add_rewrite_rule( "^${root}/([^/]+/)+([^/]+)/?$", 'index.php?playlist=$matches[2]', 'top' );
+		add_rewrite_rule( "^${root}/([^/]+/)+([^/]+)/page/([0-9]+)/?$", 'index.php?playlist=$matches[2]&paged=$matches[3]', 'top' );
     }
 	
 }

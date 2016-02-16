@@ -20,45 +20,79 @@
 
 namespace Makigas\VideoManager;
 
+defined( 'ABSPATH' ) || die( 'You are not supposed to run this, punk.' );
+
 /**
- * Playlists are custom taxonomies that contain videos.
- * The user can create a taxonomy and register videos there.
+ * Playlists are custom taxonomies that contain videos. The user can manage
+ * the playlists and add videos to playlists. Playlists are hierarchical, and
+ * it is a good way for managing playlists to organize related playlists in
+ * a parent playlist.
+ * 
+ * @package makigas-videoman
+ * @since 1.0.0
+ * @todo Custom post fields? I'm mainly interested in a playlist thumbnail.
  */
 class Playlist {
 
+	/**
+	 * Our singleton variable.
+	 * @var Playlist
+	 */
+	private static $instance = null;
+	
+	/**
+	 * Get the static instance for this class.
+	 * @return Playlist
+	 */
+	public static function get_instance() {
+		if ( static::$instance == null ) {
+			static::$instance = new Playlist();
+		}
+		return static::$instance;
+	}
+	
+	protected function __construct() {
+		
+	}
+	
+	public function setup_hooks() {
+		add_action( 'init', array( $this, 'register_playlist' ) );
+	}
+	
     /**
      * This function registers the playlist taxonomy.
      */
     public function register_playlist() {
-        // Labels array. This should be internationalizated.
-        $labels = array(
-            'name' => __( 'Playlists', 'makigas-videoman' ),
-            'singular_name' => __( 'Playlist', 'makigas-videoman' ),
-            'search_items' => __( 'Search Playlists', 'makigas-videoman' ),
-            'all_items' => __('All Playlists', 'makigas-videoman' ),
-            'parent_item' => __( 'Parent Playlist', 'makigas-videoman' ),
-            'parent_item_colon' => __( 'Parent Playlist:', 'makigas-videoman' ),
-            'edit_item' => __( 'Edit Playlist', 'makigas-videoman' ),
-            'update_item' => __( 'Update Playlist', 'makigas-videoman' ),
-            'add_new_item' => __( 'Add new Playlist', 'makigas-videoman' ),
-            'new_item_name' => __( 'Playlist Title', 'makigas-videoman' ),
-            'menu_name' => __( 'Playlist', 'makigas-videoman' ),
-        );
-
-        // Playlist arguments.
-        $args = array(
+		/* Extract some settings customizable by the user. */
+		$root = get_option( 'makigas-videoman-videos-slug' );
+		
+        /* Register taxonomy. */
+        register_taxonomy('playlist', 'video', array(
             'label' => __( 'Playlist', 'makigas-videoman' ),
-            'labels' => $labels,
+            'labels' => array(
+				'name' => __( 'Playlists', 'makigas-videoman' ),
+				'singular_name' => __( 'Playlist', 'makigas-videoman' ),
+				'search_items' => __( 'Search Playlists', 'makigas-videoman' ),
+				'all_items' => __('All Playlists', 'makigas-videoman' ),
+				'parent_item' => __( 'Parent Playlist', 'makigas-videoman' ),
+				'parent_item_colon' => __( 'Parent Playlist:', 'makigas-videoman' ),
+				'edit_item' => __( 'Edit Playlist', 'makigas-videoman' ),
+				'update_item' => __( 'Update Playlist', 'makigas-videoman' ),
+				'add_new_item' => __( 'Add new Playlist', 'makigas-videoman' ),
+				'new_item_name' => __( 'Playlist Title', 'makigas-videoman' ),
+				'menu_name' => __( 'Playlist', 'makigas-videoman' ),
+			),
             'query_var' => true,
-            // We WANT the playlists to be a hierarchical type.
-            // I'm not sure if I want the playlist to be hierarchical because
-            // of supporting child playlists, or just because I don't want
-            // to use tags for this.
             'hierarchical' => true,
-            'rewrite' => array( 'slug' => get_option( 'makigas-videoman-videos-slug' ) )
-        );
-
-        register_taxonomy('playlist', 'video', $args);
+            'rewrite' => array(
+				'slug' => $root,
+				'with_front' => false,
+				'feed' => true,
+				'pages' => true,
+				/* Allow parent playlists to appear in the slug. */
+				'hierarchical' => true
+			)
+        ) );
     }
 
 }

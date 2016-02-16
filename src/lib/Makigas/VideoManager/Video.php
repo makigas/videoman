@@ -28,7 +28,7 @@ defined( 'ABSPATH' ) || die( 'You are not supposed to run this, punk.' );
  * like YouTube.
  * 
  * @package makigas
- * @version 1.1.0
+ * @version 1.0.0
  * @todo the custom post type ID doesn't make use of any prefix.
  * @todo support for other video providers: Vimeo, Livecoding...?
  */
