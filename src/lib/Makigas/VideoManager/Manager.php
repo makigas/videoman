@@ -32,11 +32,12 @@ class Manager {
 
     public function init() {
         add_action('init', [ $this->video, 'register_post_type']);
-        add_action('init', [ $this->video, 'makigas_add_rewrite_rules']);
         add_action('init', [ $this->playlist, 'register_playlist']);
         add_action('add_meta_boxes', [ $this->video_metabox, 'register_metabox']);
         add_action('admin_enqueue_scripts', [ $this->video_metabox, 'enqueue_assets']);
         add_action('save_post', [ $this->video_metabox, 'save_post']);
+		
+		UrlRewriter::get_instance()->setup_hooks();
     }
 
 }

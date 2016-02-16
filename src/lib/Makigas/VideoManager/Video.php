@@ -48,36 +48,10 @@ class Video {
 
         // Add video post type.
         register_post_type('video', $args);
-
-        add_filter('post_type_link', array($this, 'filter_permalink'), 1, 3);
     }
 
-    public function filter_permalink($url, $post) {
-        // If this post is not a video, don't filter.
-        if ('video' !== get_post_type($post)) {
-            return $url;
-        }
+    
 
-        // FIXME: There should be a way to manage permalinks for videos
-        // that are not in a playlist.
-        // Get the video playlist.
-        $playlists = get_the_terms($post, 'playlist');
-
-        // The video is in at least one playlist. Use the first playlist.
-        // A video should not be anyway in more than a playlist.
-        $playlist_slug = $playlists[0]->slug;
-        return str_replace('%playlist%', $playlist_slug, $url);
-    }
-
-    public function makigas_add_rewrite_rules() {
-        // Rewrite rule for the pagination system.
-        add_rewrite_rule('^' . get_option( 'makigas-videoman-videos-slug' ) . '/([^/]+)/page/([0-9]+)/?$', 'index.php?playlist=$matches[1]&paged=$matches[2]', 'top');
-
-		// Rewrite rule for the videos.
-        add_rewrite_rule('^' . get_option( 'makigas-videoman-videos-slug' ) . '/page/([0-9]+)/?$', 'index.php?post_type=video&paged=$matches[1]', 'top');
-
-        // Rewrite rule for the videos.
-        add_rewrite_rule('^' . get_option( 'makigas-videoman-videos-slug' ) . '/?$', 'index.php?post_type=video', 'top');
-    }
+    
 
 }
