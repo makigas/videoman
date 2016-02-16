@@ -50,8 +50,8 @@ class UrlRewriter {
 	}
 	
 	public function setup_hooks() {
-		add_filter('post_type_link', array( $this, 'filter_permalink' ), 1, 3);
-		add_action('init', array( $this, 'makigas_add_rewrite_rules') );
+		add_filter( 'post_type_link', array( $this, 'filter_permalink' ), 1, 3);
+		add_action( 'init', array( $this, 'setup_rewrite_rules' ) );
 	}
 	
 	/**
@@ -122,13 +122,6 @@ class UrlRewriter {
 		/* These rewrite rules makes it possible to browse the video archive. */
 		add_rewrite_rule( "^${root}/?$", 'index.php?post_type=video', 'top' );
 		add_rewrite_rule( "^${root}/page/([0-9]+)/?$", 'index.php?post_type=video&paged=$matches[1]', 'top' );
-		
-		/* This rewrite rule makes it possible to access single video. */
-		add_rewrite_rule( "^${root}/([^/]+/)+${prefix}/([^/]+)/?$", 'index.php?video=$matches[2]', 'top' );
-		
-		/* These rewrite rules makes it possible to browse a playlist. */
-		add_rewrite_rule( "^${root}/([^/]+/)+([^/]+)/?$", 'index.php?playlist=$matches[2]', 'top' );
-		add_rewrite_rule( "^${root}/([^/]+/)+([^/]+)/page/([0-9]+)/?$", 'index.php?playlist=$matches[2]&paged=$matches[3]', 'top' );
     }
 	
 }
