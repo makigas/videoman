@@ -20,13 +20,45 @@
 
 namespace Makigas\VideoManager;
 
+defined( 'ABSPATH' ) || die( 'You are not supposed to run this, punk.' );
+
 /**
  * This class takes care of rendering the metabox on the editor page for videos
  * as well as for saving that information when the video is saved into the
  * database.
+ * 
+ * @package makigas-videoman
+ * @version 1.0.0
  */
 class VideoMetabox {
 
+	/**
+	 * Our singleton variable.
+	 * @var VideoMetabox
+	 */
+	private static $instance = null;
+	
+	/**
+	 * Get the static instance for this class.
+	 * @return VideoMetabox
+	 */
+	public static function get_instance() {
+		if ( static::$instance == null ) {
+			static::$instance = new VideoMetabox();
+		}
+		return static::$instance;
+	}
+	
+	protected function __construct() {
+		
+	}
+	
+	public function setup_hooks() {
+		add_action( 'add_meta_boxes', array( $this, 'register_metabox' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
+        add_action( 'save_post', array( $this, 'save_post' ) );
+	}
+	
     /**
      * Prints to output HTML code to generate a field.
      * 

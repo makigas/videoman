@@ -22,21 +22,10 @@ namespace Makigas\VideoManager;
 
 class Manager {
 
-    private $playlist, $video_metabox;
-
-    public function __construct() {
-        $this->playlist = new Playlist;
-        $this->video_metabox = new VideoMetabox;
-    }
-
     public function init() {
 		Video::get_instance()->setup_hooks();
-		
-        add_action('init', [ $this->playlist, 'register_playlist']);
-        add_action('add_meta_boxes', [ $this->video_metabox, 'register_metabox']);
-        add_action('admin_enqueue_scripts', [ $this->video_metabox, 'enqueue_assets']);
-        add_action('save_post', [ $this->video_metabox, 'save_post']);
-		
+		Playlist::get_instance()->setup_hooks();
+        VideoMetabox::get_instance()->setup_hooks();
 		UrlRewriter::get_instance()->setup_hooks();
 		SettingsPage::get_instance()->setup_hooks();
     }
