@@ -67,3 +67,13 @@ function print_next_video_link( $before = '', $after = '' ) {
        _e( 'You are at the last episode', 'makigas-theme' );
     }
 }
+
+function query_thumbnail( $playlist_slug, $thumbnail = 'default' ) {
+	$query = new WP_Query( 'post_type=video&playlist=' . $playlist_slug . '&showposts=1&order=ASC' );
+	if ( $query->have_posts() ) {
+		$query->the_post();
+		return get_youtube_thumbnail( get_post_meta( get_the_ID(), '_video_id', true ), $thumbnail );
+	} else {
+		return false;
+	}
+}
