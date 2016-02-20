@@ -116,8 +116,17 @@ class UrlRewriter {
 	 */
 	public function setup_rewrite_rules() {
 		/* Extract modifiable information. */
-		$root = get_option( 'makigas-videoman-videos-slug', 'videos' );
+		$root_id = get_option( 'makigas-videoman-videos-slug', 'videos' );
 		$prefix = get_option( 'makigas-videoman-videos-prefix', 'episode' );
+		
+		/* Get the slug for the root page. */
+		$root = get_permalink( $root_id );
+		$root = str_replace( home_url(), '', $root );
+		
+		/* Maybe remove trailing slash. */
+		if ( substr( $root, -1 ) == '/' ) {
+			$root = substr( $root, 0, -1 );
+		}
 		
 		/* These rewrite rules makes it possible to browse the video archive. */
 		add_rewrite_rule( "^${root}/?$", 'index.php?post_type=video', 'top' );

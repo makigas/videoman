@@ -134,14 +134,35 @@ class SettingsPage {
 	 * This allows the user to modify the slug used in page for rendering
 	 * the video archive.
 	 */
-	public function render_video_slug_callback() {
-		echo '<input type="text" id="makigas-videoman-videos-slug" name="makigas-videoman-videos-slug" value="' . get_option( 'makigas-videoman-videos-slug', 'video' ) . '" />';
+	public function render_video_slug_callback() {	
+		$current = get_option( 'makigas-videoman-videos-slug' );
+		echo '<select name="makigas-videoman-videos-slug" id="makigas-videoman-videos-slug">';
+		foreach( $this->prepare_pages_list() as $page ) {
+			$selected = $current == $page['id'] ? ' selected' : '';
+			echo '<option value="' . $page['id'] . '"' . $selected . '>' . $page['title'] . '</option>';
+		}
+		echo '</select>';
 		echo '<p id="makigas-videoman-videos-slug-description" class="description">' . __( 'This is the base URL when the user is inspecting the video archive page.', 'makigas-videoman' ) . '</p>';
 	}
 	
 	public function render_video_prefix_callback() {
 		echo '<input type="text" id="makigas-videoman-videos-prefix" name="makigas-videoman-videos-prefix" value="' . get_option( 'makigas-videoman-videos-prefix', 'episode' ) . '" />';
 		echo '<p id="makigas-videoman-videos-prefix-description" class="description">' . __( 'This goes between the playlist name and the video name in the permalink.', 'makigas-videoman' ) . '</p>';
+	}
+	
+	private function prepare_pages_list( $parent = 0, $depth = 0 ) {
+		$pages = get_pages( array( 'parent' => $parent ) );
+		$depth_prefix = "";
+		if ( $depth > 0 ) {
+			$depth_prefix = str_repeat( '&nbsp;', 2 * $depth ) . '– ';
+		}
+		$all_pages = array();
+		foreach ( $pages as $page ) {
+			$all_pages[] = array( 'id' => $page->ID, 'title' => $depth_prefix . $page->post_title );
+			$child_pages = $this->prepare_pages_list( $page->ID, $depth + 1 );
+			$all_pages = array_merge( $all_pages, $child_pages );
+		}
+		return $all_pages;
 	}
 }
 

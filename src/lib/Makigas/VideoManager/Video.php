@@ -65,8 +65,17 @@ class Video {
      */
     public function register_post_type() {
 		/* These settings are part of slug and can be changed by the user. */
-		$root = get_option( 'makigas-videoman-videos-slug', 'videos' );
+		$root_id = get_option( 'makigas-videoman-videos-slug', 'videos' );
 		$prefix = get_option( 'makigas-videoman-videos-prefix', 'episode' );
+		
+		/* Get the slug for the root page. */
+		$root = get_permalink( $root_id );
+		$root = str_replace( home_url(), '', $root );
+		
+		/* Maybe remove trailing slash. */
+		if ( substr( $root, -1 ) == '/' ) {
+			$root = substr( $root, 0, -1 );
+		}
 
         /* Actually register the video post type in the system. */
         register_post_type( 'video', array(
