@@ -82,10 +82,9 @@ class SettingsPage {
 	public function render_videoman_options() {
 		echo '<div class="wrap">';
 		echo '<h2>' . __( 'Video Manager Options', 'makigas-videoman' ) . '</h2>';
-		settings_errors();
 		
 		echo '<form method="post" action="options.php">';
-		settings_fields( self::SETTINGS_PAGE );
+		settings_fields( self::SETTINGS_SLUG_SECTION );
 		do_settings_sections( self::SETTINGS_PAGE );
 		submit_button();
 		echo '</form>';
@@ -121,8 +120,8 @@ class SettingsPage {
 				self::SETTINGS_SLUG_SECTION
 			);
 		
-		register_setting( self::SETTINGS_PAGE, 'makigas-videoman-videos-slug' );
-		register_setting( self::SETTINGS_PAGE, 'makigas-videoman-videos-prefix' );
+		register_setting( self::SETTINGS_SLUG_SECTION, 'makigas-videoman-videos-slug' );
+		register_setting( self::SETTINGS_SLUG_SECTION, 'makigas-videoman-videos-prefix' );
 	}
 	
 	public function render_slug_settings_callback() {
