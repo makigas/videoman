@@ -115,9 +115,8 @@ class UrlRewriter {
 	 * rules to work.
 	 */
 	public function setup_rewrite_rules() {
-		/* Extract modifiable information. */
+		/* Extract some settings customizable by the user. */
 		$root_id = get_option( 'makigas-videoman-videos-slug', 'videos' );
-		$prefix = get_option( 'makigas-videoman-videos-prefix', 'episode' );
 		
 		/* Get the slug for the root page. */
 		$root = get_permalink( $root_id );
@@ -128,9 +127,14 @@ class UrlRewriter {
 			$root = substr( $root, 0, -1 );
 		}
 		
+		/* And maybe remove leading slash. */
+		if ( substr( $root, 0, 1) == '/' ) {
+			$root = substr( $root, 1 );
+		}
+		
 		/* These rewrite rules makes it possible to browse the video archive. */
-		add_rewrite_rule( "^${root}/?$", 'index.php?post_type=video', 'top' );
-		add_rewrite_rule( "^${root}/page/([0-9]+)/?$", 'index.php?post_type=video&paged=$matches[1]', 'top' );
+		add_rewrite_rule( "${root}/?$", 'index.php?post_type=video', 'top' );
+		add_rewrite_rule( "${root}/page/([0-9]+)/?$", 'index.php?post_type=video&paged=$matches[1]', 'top' );
     }
 	
 }
